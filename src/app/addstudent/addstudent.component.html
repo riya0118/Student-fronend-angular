@@ -1,0 +1,81 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="addForm">
+      <div class="form-group col-md-4">
+        <label>Rollno</label>
+        <input type="number" formControlName="rollno" class="form-control" />
+      </div>
+      <div
+        *ngIf="addForm.controls['rollno'].errors != null && addForm.controls['rollno'].invalid && (addForm.controls['rollno'].dirty || addForm.controls['rollno'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="addForm.controls['rollno'].errors['required'] != null">
+          Rollno is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Name</label>
+        <input type="text" formControlName="name" class="form-control" />
+      </div>
+      <div
+        *ngIf="addForm.controls['name'].errors != null && addForm.controls['name'].invalid && (addForm.controls['name'].dirty || addForm.controls['name'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="addForm.controls['name'].errors['required'] != null">
+          Name is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Age</label>
+        <input type="number" formControlName="age" class="form-control" />
+      </div>
+      <div
+        *ngIf="addForm.controls['age'].errors != null && addForm.controls['age'].invalid && (addForm.controls['age'].dirty || addForm.controls['age'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="addForm.controls['age'].errors['required'] != null">
+          Age is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Sem</label>
+        <input type="number" formControlName="sem" class="form-control" />
+      </div>
+      <div
+        *ngIf="addForm.controls['sem'].errors != null && addForm.controls['sem'].invalid && (addForm.controls['sem'].dirty || addForm.controls['sem'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="addForm.controls['sem'].errors['required'] != null">
+          Sem is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Username</label>
+        <input type="text" formControlName="username" class="form-control" />
+      </div>
+      <div
+        *ngIf="addForm.controls['username'].errors != null && addForm.controls['username'].invalid && (addForm.controls['username'].dirty || addForm.controls['username'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="addForm.controls['username'].errors['required'] != null">
+          Username is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Password</label>
+        <input type="text" formControlName="password" class="form-control" />
+      </div>
+      <div
+        *ngIf="addForm.controls['password'].errors != null && addForm.controls['password'].invalid && (addForm.controls['password'].dirty || addForm.controls['password'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="addForm.controls['password'].errors['required'] != null">
+          Password is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <input type="submit" value="Add" (click)="add()" [disabled]="addForm.pristine || addForm.invalid">
+      </div>
+    </form>
+  </div>
+</div>

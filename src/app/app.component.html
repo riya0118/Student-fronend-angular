@@ -1,0 +1,43 @@
+<!-- <app-login></app-login>
+<router-outlet></router-outlet> -->
+
+<h1 align="center">Welcome to Angular!!</h1>
+
+<table border="1" width="90%" align="center">
+  <tr>
+    <td align="center">
+      <h1>Header</h1>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table border="1" width="100%">
+        <tr>
+          <td>
+            <ul>
+              <li>
+                <a routerLink="/login">Student Login</a><br>
+                <a routerLink="/studentlist">Student List</a><br>
+                <a routerLink="/addStudent">Add Student</a><br>
+              </li>
+              <!-- <li>
+                <a routerLink="book/create" routerLinkActive="active">Insert Book</a><br>
+                <a routerLink="book" routerLinkActive="active">Books</a>
+              </li> -->
+            </ul>
+
+          </td>
+          <td width="70%">
+            <router-outlet></router-outlet>
+          </td>
+          <td> </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <h3>Footer</h3>
+    </td>
+  </tr>
+</table>

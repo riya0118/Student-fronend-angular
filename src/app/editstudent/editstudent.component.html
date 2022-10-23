@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="editForm">
+      <div class="form-group col-md-4">
+        <label>Rollno</label>
+        <input type="number" formControlName="rollno" #rollno [(ngModel)]="student.rollno" class="form-control" />
+      </div>
+      <div
+        *ngIf="editForm.controls['rollno'].errors != null && editForm.controls['rollno'].invalid && (editForm.controls['rollno'].dirty || editForm.controls['rollno'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="editForm.controls['rollno'].errors['required'] != null">
+          Rollno is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Name</label>
+        <input type="text" formControlName="name" #name [(ngModel)]="student.name" class="form-control" />
+      </div>
+      <div
+        *ngIf="editForm.controls['name'].errors != null && editForm.controls['name'].invalid && (editForm.controls['name'].dirty || editForm.controls['name'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="editForm.controls['name'].errors['required'] != null">
+          Name is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Age</label>
+        <input type="number" formControlName="age" #age [(ngModel)]="student.age" class="form-control" />
+      </div>
+      <div
+        *ngIf="editForm.controls['age'].errors != null && editForm.controls['age'].invalid && (editForm.controls['age'].dirty || editForm.controls['age'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="editForm.controls['age'].errors['required'] != null">
+          Age is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Sem</label>
+        <input type="number" formControlName="sem" #sem [(ngModel)]="student.sem" class="form-control" />
+      </div>
+      <div
+        *ngIf="editForm.controls['sem'].errors != null && editForm.controls['sem'].invalid && (editForm.controls['sem'].dirty || editForm.controls['sem'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="editForm.controls['sem'].errors['required'] != null">
+          Sem is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Username</label>
+        <input type="text" formControlName="username" #username [(ngModel)]="student.username" class="form-control" />
+      </div>
+      <div
+        *ngIf="editForm.controls['username'].errors != null && editForm.controls['username'].invalid && (editForm.controls['username'].dirty || editForm.controls['username'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="editForm.controls['username'].errors['required'] != null">
+          Username is required.
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <input type="submit" value="Update" (click)="update()" [disabled]="editForm.pristine || editForm.invalid">
+      </div>
+    </form>
+  </div>
+</div>
