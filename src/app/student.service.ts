@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Student from './student';
-import { Observable } from 'rxjs';
+import { Observable, of, shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
   uri = "http://localhost:9000/students";
+  token: any;
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +18,15 @@ export class StudentService {
       password: password
     };
     console.log(data);
-    this.http.post(`${this.uri}/login`, data, {responseType: 'text'}).subscribe(res => console.log("login done"));
+    this.token = this.http.post(`${this.uri}/login`, data, {responseType: 'text'}).subscribe(res => console.log("login done"));
+  }
+
+  getStudents(): Observable<Student[]>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+    return this.http.get<Student[]>(`${this.uri}`, { headers: headers });
   }
 
   addStudent(rollno: number, name: string, age: number, sem: number, username: string, password: string){
@@ -30,10 +39,6 @@ export class StudentService {
       password: password
     }
     this.http.post(`${this.uri}`, data).subscribe(res => console.log("student added"));
-  }
-
-  getStudents(): Observable<Student[]>{
-    return this.http.get<Student[]>(`${this.uri}`);
   }
 
   getStudentById(id: any){
