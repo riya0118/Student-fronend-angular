@@ -8,15 +8,20 @@ import { Observable, of, shareReplay } from 'rxjs';
 })
 export class StudentService {
   uri = "http://localhost:9000/students";
-  token: any;
+  token = localStorage.getItem('access_token');
 
   constructor(private http: HttpClient) { }
 
-  getStudents(): Observable<Student[]>{
+  // headers = new HttpHeaders({
+  //   'Content-Type': 'application/json',
+  //   'Authorization': `Bearer ${this.token}`,
+  // });
+
+  getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.uri}`);
   }
 
-  addStudent(rollno: number, name: string, age: number, sem: number, username: string, password: string){
+  addStudent(rollno: number, name: string, age: number, sem: number, username: string, password: string) {
     const data = {
       rollno: rollno,
       name: name,
@@ -28,11 +33,11 @@ export class StudentService {
     this.http.post(`${this.uri}`, data).subscribe(res => console.log("student added"));
   }
 
-  getStudentById(id: any){
+  getStudentById(id: any) {
     return this.http.get(`${this.uri}/${id}`);
   }
 
-  editStudent(id: any, rollno: number, name: string, age: number, sem: number, username: string){
+  editStudent(id: any, rollno: number, name: string, age: number, sem: number, username: string) {
     const data = {
       rollno: rollno,
       name: name,
@@ -43,7 +48,7 @@ export class StudentService {
     this.http.put(`${this.uri}/${id}`, data).subscribe(res => console.log("editted"));
   }
 
-  deleteStudent(id: any){
+  deleteStudent(id: any) {
     return this.http.delete(`${this.uri}/${id}`);
   }
 }
