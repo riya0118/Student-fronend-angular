@@ -12,10 +12,6 @@ export class AuthService {
   uri = "http://localhost:9000/students";
 
   login(username: string, password: string) : Observable<boolean> {
-    // const data = {
-    //   username: username,
-    //   password: password
-    // }
     return this.http.post(`${this.uri}/login`, { username: username, password: password }, {responseType: 'text'})
     .pipe(
       map(result => {
