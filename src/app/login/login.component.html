@@ -30,5 +30,6 @@
         <input type="submit" value="Login" (click)="login()" [disabled]="loginForm.pristine || loginForm.invalid">
       </div>
     </form>
+    <h4 *ngIf="error" style="color: red;">{{error}}</h4>  
   </div>
 </div>

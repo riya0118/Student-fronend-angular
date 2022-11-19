@@ -12,21 +12,8 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  loginStudent(username: string, password: string){
-    const data = {
-      username: username,
-      password: password
-    };
-    console.log(data);
-    this.token = this.http.post(`${this.uri}/login`, data, {responseType: 'text'}).subscribe(res => console.log("login done"));
-  }
-
   getStudents(): Observable<Student[]>{
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
-    })
-    return this.http.get<Student[]>(`${this.uri}`, { headers: headers });
+    return this.http.get<Student[]>(`${this.uri}`);
   }
 
   addStudent(rollno: number, name: string, age: number, sem: number, username: string, password: string){

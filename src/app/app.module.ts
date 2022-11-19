@@ -10,6 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { StudentlistComponent } from './studentlist/studentlist.component';
 import { AddstudentComponent } from './addstudent/addstudent.component';
 import { EditstudentComponent } from './editstudent/editstudent.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+
+export function tokenGetter(){
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -23,9 +30,20 @@ import { EditstudentComponent } from './editstudent/editstudent.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:9000'],
+        disallowedRoutes: ['localhost:9000/api/login']
+      }
+    })
   ],
-  providers: [StudentService],
+  providers: [
+    StudentService,
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

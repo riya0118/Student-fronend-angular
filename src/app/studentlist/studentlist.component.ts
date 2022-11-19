@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import Student from '../student';
 import { StudentService } from '../student.service';
 
@@ -10,7 +12,7 @@ import { StudentService } from '../student.service';
 export class StudentlistComponent implements OnInit {
   students: Student[] = [];
 
-  constructor(private service: StudentService) { }
+  constructor(private service: StudentService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.service.getStudents().subscribe((data: Student[]) => {
@@ -25,4 +27,8 @@ export class StudentlistComponent implements OnInit {
     });
   }
 
+  logout(){
+    this.auth.logout();
+    this.router.navigate(['login']);
+  }
 }
